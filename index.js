@@ -4,9 +4,10 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 import { typeDefs } from "./schema.js";
 import db from './_db.js'
 
-const resolves = {
+const resolvers = {
     Query: {
         games() {
+            console.log('get games')
             return db.games
         },
         authors() {
@@ -21,7 +22,7 @@ const resolves = {
 // create apollo server
 const server = new ApolloServer({
     typeDefs,
-    resolves
+    resolvers,
 })
 
 const { url } = await startStandaloneServer(server, {
@@ -30,5 +31,5 @@ const { url } = await startStandaloneServer(server, {
     }
 })
 
-console.log('Server ready at port ', 4000);
+console.log('Server ready at port ', 4000, url);
 
