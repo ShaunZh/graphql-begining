@@ -15,7 +15,17 @@ const resolvers = {
         },
         reviews() {
             return db.reviews
+        },
+        review(_parent, { id }) {
+            return db.reviews.find(review => review.id === id)
+        },
+        game(_parent, { id }) {
+            return db.games.find(game => game.id === id)
+        },
+        author(_parent, { id }) {
+            return db.authors.find(author => author.id === id)
         }
+
     }
 }
 
