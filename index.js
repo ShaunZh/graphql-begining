@@ -43,8 +43,14 @@ const resolvers = {
         author(_parent) {
             return db.authors.find(a => a.id === _parent.author_id)
         }
-
+    },
+    Mutation: {
+        deleteGame(_parent, {id}) {
+            db.games = db.games.filter(g => g.id !== id);
+            return db.games
+        }
     }
+    
 }
 
 // create apollo server
