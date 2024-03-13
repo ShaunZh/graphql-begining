@@ -48,6 +48,14 @@ const resolvers = {
         deleteGame(_parent, {id}) {
             db.games = db.games.filter(g => g.id !== id);
             return db.games
+        },
+        addGame(_parent, args) {
+            const newGame = {
+                ...args.game,
+                id: Math.floor(Math.random() * 100000).toString(),
+            }
+            db.games.push(newGame);
+            return newGame;
         }
     }
     
